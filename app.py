@@ -9,6 +9,15 @@ from facenet_pytorch import MTCNN
 mtcnn = MTCNN(image_size=128, margin=40, post_process=False)
 
 # --------------------------------------------------
+# Absolute base path (works locally and in the cloud)
+# --------------------------------------------------
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+def asset(filename):
+    return os.path.join(BASE_DIR, filename)
+
+# --------------------------------------------------
 # Page config
 # --------------------------------------------------
 
@@ -25,10 +34,10 @@ st.set_page_config(
 @st.cache_resource
 def load_models():
     mustache_model = tf.keras.models.load_model(
-        "models/mustache_detector2.keras"
+        asset("models/mustache_detector2.keras")
     )
     epic_model = tf.keras.models.load_model(
-        "models/epic_detector.keras"
+        asset("models/epic_detector.keras")
     )
     return mustache_model, epic_model
 
@@ -45,7 +54,7 @@ IMG_SIZE = (128, 128)
 # Header
 # --------------------------------------------------
 
-st.image("assets/logo.png", use_container_width=True)
+st.image(asset("assets/logo.png"), use_container_width=True)
 
 st.caption(
     "Official Facial Hair Assessment "
@@ -86,31 +95,31 @@ def classify_epicness(score):
         return (
             "🏆 LEGENDARY STACHE",
             "The International Mustache Authority is impressed.",
-            "assets/epic.mp4"
+            asset("assets/epic.mp4")
         )
     elif score >= 0.65:
         return (
             "🎩 Distinguished Gentleman",
             "A respectable upper-lip performance.",
-            "assets/medium.mp4"
+            asset("assets/medium.mp4")
         )
     elif score >= 0.45:
         return (
             "🧔 Standard Issue Mustache",
             "Acceptable. Not historic.",
-            "assets/medium.mp4"
+            asset("assets/medium.mp4")
         )
     elif score >= 0.25:
         return (
             "🌱 Apprentice Stache",
             "Mustache growth is currently in beta testing.",
-            "assets/not_epic.mp4"
+            asset("assets/not_epic.mp4")
         )
     else:
         return (
             "🪶 Fjunig Mustache",
             "The mustache exists mostly as a theoretical concept.",
-            "assets/no.mp4"
+            asset("assets/no.mp4")
         )
 
 
@@ -182,8 +191,9 @@ if uploaded_file is not None:
                 "Verdict: Upper lip currently operating "
                 "without sufficient authority."
             )
-            if os.path.exists("assets/no.mp4"):
-                st.video("assets/no.mp4")
+            no_mp4 = asset("assets/no.mp4")
+            if os.path.exists(no_mp4):
+                st.video(no_mp4)
 
         else:
             thin_prob = float(
@@ -199,7 +209,6 @@ if uploaded_file is not None:
 
             title, description, video_file = classify_epicness(epic_score)
 
-            # Video överst om det finns en
             if video_file and os.path.exists(video_file):
                 st.video(video_file)
 
