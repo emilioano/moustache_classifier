@@ -118,7 +118,7 @@ def classify_epicness(score):
         return (
             "🌱 Apprentice Stache",
             "Mustache growth is currently in beta testing.",
-            asset("assets/not_epic.MP4")
+            asset("assets/medium.MP4")
         )
     else:
         return (
