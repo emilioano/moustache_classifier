@@ -124,7 +124,7 @@ def classify_epicness(score):
         return (
             "🪶 Fjunig Mustache",
             "The mustache exists mostly as a theoretical concept.",
-            asset("assets/no.MP4")
+            asset("assets/fjunig.MP4")
         )
 
 
