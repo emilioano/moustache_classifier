@@ -17,6 +17,11 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 def asset(filename):
     return os.path.join(BASE_DIR, filename)
 
+def play_video(path):
+    if os.path.exists(path):
+        with open(path, "rb") as f:
+            st.video(f.read())
+
 # --------------------------------------------------
 # Page config
 # --------------------------------------------------
@@ -191,9 +196,7 @@ if uploaded_file is not None:
                 "Verdict: Upper lip currently operating "
                 "without sufficient authority."
             )
-            no_mp4 = asset("assets/no.mp4")
-            if os.path.exists(no_mp4):
-                st.video(no_mp4)
+            play_video(asset("assets/no.mp4"))
 
         else:
             thin_prob = float(
@@ -209,8 +212,7 @@ if uploaded_file is not None:
 
             title, description, video_file = classify_epicness(epic_score)
 
-            if video_file and os.path.exists(video_file):
-                st.video(video_file)
+            play_video(video_file)
 
             st.markdown("<br>", unsafe_allow_html=True)
 
@@ -233,9 +235,3 @@ if uploaded_file is not None:
                 "Results certified by the "
                 "International Mustache Authority™"
             )
-
-            # Debug video file
-            st.write(video_file)
-            st.write(os.path.exists(video_file))
-
-
