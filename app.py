@@ -100,31 +100,31 @@ def classify_epicness(score):
         return (
             "🏆 LEGENDARY STACHE",
             "The International Mustache Authority is impressed.",
-            asset("assets/epic.mp4")
+            asset("assets/epic.MP4")
         )
     elif score >= 0.65:
         return (
             "🎩 Distinguished Gentleman",
             "A respectable upper-lip performance.",
-            asset("assets/medium.mp4")
+            asset("assets/medium.MP4")
         )
     elif score >= 0.45:
         return (
             "🧔 Standard Issue Mustache",
             "Acceptable. Not historic.",
-            asset("assets/medium.mp4")
+            asset("assets/medium.MP4")
         )
     elif score >= 0.25:
         return (
             "🌱 Apprentice Stache",
             "Mustache growth is currently in beta testing.",
-            asset("assets/not_epic.mp4")
+            asset("assets/not_epic.MP4")
         )
     else:
         return (
             "🪶 Fjunig Mustache",
             "The mustache exists mostly as a theoretical concept.",
-            asset("assets/no.mp4")
+            asset("assets/no.MP4")
         )
 
 
@@ -196,7 +196,7 @@ if uploaded_file is not None:
                 "Verdict: Upper lip currently operating "
                 "without sufficient authority."
             )
-            play_video(asset("assets/no.mp4"))
+            play_video(asset("assets/no.MP4"))
 
         else:
             thin_prob = float(
