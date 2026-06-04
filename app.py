@@ -235,6 +235,3 @@ if uploaded_file is not None:
                 "Results certified by the "
                 "International Mustache Authority™"
             )
-
-            st.write("BASE_DIR:", BASE_DIR)
-            st.write("assets innehåller:", os.listdir(asset("assets")))
