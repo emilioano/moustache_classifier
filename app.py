@@ -233,3 +233,9 @@ if uploaded_file is not None:
                 "Results certified by the "
                 "International Mustache Authority™"
             )
+
+            # Debug video file
+            st.write(video_file)
+            st.write(os.path.exists(video_file))
+
+
