@@ -1,4 +1,6 @@
 # moustache_classifier
+## Live app: https://moustacheclassifier.streamlit.app/
+
 Moustache power rating - AI powered facial hair analysis. Python school project in Applied AI (CNN, Neural Networks). 2026
 
 
